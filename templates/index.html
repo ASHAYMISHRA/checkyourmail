@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Check Your Mail</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+<nav class="navbar  navbar-expand-lg navbar-light bg-light fixed-top">
+	<div class='container'>
+  <a class="navbar-brand" href="#">Mail Classifier</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/ASHAYMISHRA">GitHub</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+<div class='container container-main'>
+	<div class='card'>
+		<div class="card-body">		
+			<form action='/predict' method='POST'>
+				<div>
+					<textarea rows="5" cols="33" name='mail',value='text' placeholder="Paste your content here" value=text required="Please paste some text"></textarea> 
+				</div>
+				<div class='select-custom'>
+					<select id='algo' name='algo' required="Please select one algorithm">
+						<option value="Choose The Algorithm" disabled selected>Choose The Algorithm</option>
+						<option value='SGD'>Stochastic Gradient Descent </option>
+						<option value='LOG'>Logistic Regression</option>
+						<option value='KNN'>K-Nearest Neighbors</option>
+						<option value='SVM'>Support Vector Machine</option>
+						<option value='MNB'>Naive Bayes Classifier</option>
+						<option value='RFC'>Random Forest Classifier</option>
+						<option value='RFC'>Decision Tree Classifier</option>
+					</select>
+				</div>
+				<div class='submit-custom '>
+					<input class='btn btn-success' type="submit" value="Check">
+					<button class="btn btn-warning"><a href="/">Reset</a></button>
+				</div>
+			</form>
+		</div>
+		{%if textlen %}
+		{% if prediction==0 %}
+			<p class="message green">This mail is a Legit Mail</p>
+		{% elif prediction==1 %}
+			<p class="message danger">This mail could be a Spam Mail</p>
+		{% endif %}
+		{% if algo=='SGD' %}
+		<div class="algoinfo">
+			<h4 style="text-decoration: underline;">  Stochastic Gradient Descent </h4>
+			<p class="algoinfo">Gradient Descent is a popular optimization technique in Machine Learning and Deep Learning, and it can be used with most, if not all, of the learning algorithms. A gradient is the slope of a function. It measures the degree of change of a variable in response to the changes of another variable. Mathematically, Gradient Descent is a convex function whose output is the partial derivative of a set of parameters of its inputs. The greater the gradient, the steeper the slope.</p>
+			<p class="algoinfo">Starting from an initial value, Gradient Descent is run iteratively to find the optimal values of the parameters to find the minimum possible value of the given cost function <a href="https://en.wikipedia.org/wiki/Stochastic_gradient_descent">more...</a></p>
+		</div>
+		{% endif %}
+		{% if algo=='LOG' %}
+		<div class="algoinfo">
+			<h4 style="text-decoration: underline;">  Logistic Regression</h4>
+			<p class="algoinfo">Logistic regression is a statistical model that in its basic form uses a logistic function to model a binary dependent variable, although many more complex extensions exist. In regression analysis, logistic regression[1] (or logit regression) is estimating the parameters of a logistic model (a form of binary regression). Mathematically, a binary logistic model has a dependent variable with two possible values, such as pass/fail which is represented by an indicator variable, where the two values are labeled "0" and "1". In the logistic model, the log-odds (the logarithm of the odds) for the value labeled "1" is a linear combination of one or more independent variables ("predictors"); the independent variables can each be a binary variable (two classes, coded by an indicator variable) or a continuous variable (any real value). The corresponding probability of the value labeled "1" can vary between 0 (certainly the value "0") and 1 (certainly the value "1"), hence the labeling; the function that converts log-odds to probability is the logistic function, hence the name.</p>
+			<p class="algoinfo">In a binary logistic regression model, the dependent variable has two levels (categorical). Outputs with more than two values are modeled by multinomial logistic regression and,<a href="https://en.wikipedia.org/wiki/Logistic_regression">more...</a></p>
+		</div>
+		{% endif %}
+		{% if algo=='KNN' %}
+		<div class="algoinfo">
+			<h4 style="text-decoration: underline;"> K-Nearest Neighbors </h4>
+			<p class="algoinfo">In pattern recognition, the k-nearest neighbors algorithm (k-NN) is a non-parametric method proposed by Thomas Cover used for classification and regression.[1] In both cases, the input consists of the k closest training examples in the feature space. The output depends on whether k-NN is used for classification or regression: </p>
+			<p class="algoinfo"> <ul><li>In k-NN classification, the output is a class membership. An object is classified by a plurality vote of its neighbors, with the object being assigned to the class most common among its k nearest neighbors (k is a positive integer, typically small). If k = 1, then the object is simply assigned to the class of that single nearest neighbor.</li>
+				<br>
+        	<li>In k-NN regression, the output is the property value for the object. This value is the average of the values of k nearest neighbors.<a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">more...</a></li></ul></p>
+		</div>
+		{% endif %}
+
+		{% if algo=='SVM' %}
+		<div class="algoinfo">
+			<h4 style="text-decoration: underline;">  Support Vector Machine</h4>
+			<p class="algoinfo">In machine learning, support-vector machines (SVMs, also support-vector networks[1]) are supervised learning models with associated learning algorithms that analyze data used for classification and regression analysis. Developed at AT&T Bell Laboratories by Vapnik with colleagues (Boser et al., 1992, Guyon et al., 1993, Vapnik et al., 1997), it presents one of the most robust prediction methods, based on the statistical learning framework or VC theory proposed by Vapnik and Chervonenkis (1974) and Vapnik (1982, 1995). Given a set of training examples, each marked as belonging to one or the other of two categories, an SVM training algorithm builds a model that assigns new examples to one category or the other, making it a non-probabilistic binary linear classifier (although methods such as Platt scaling exist to use SVM in a probabilistic classification setting). An SVM model is a representation of the examples as points in space, mapped so that the examples of the separate categories are divided by a clear gap that is as wide as possible. New examples are then mapped into that same space and predicted to belong to a category based on the side of the gap on which they fall.</p>
+			<p class="algoinfo">In addition to performing linear classification, SVMs can efficiently perform a non-linear classification using what is called the kernel trick, implicitly mapping their inputs into high-dimensional feature spaces <a href="https://en.wikipedia.org/wiki/Support_vector_machine">more...</a></p>
+		</div>
+		{% endif %}
+
+			{% if algo=='MNB' %}
+		<div class="algoinfo">
+			<h4 style="text-decoration: underline;"> Naive Bayes Classifier</h4>
+			<p class="algoinfo">In statistics, Naive Bayes classifiers are a family of simple "probabilistic classifiers" based on applying Bayes' theorem with strong (naïve) independence assumptions between the features. They are among the simplest Bayesian network models.[1] But they could be coupled with Kernel density estimation and achieve higher accuracy levels.[</p>
+			<p class="algoinfo">Naïve Bayes classifiers are highly scalable, requiring a number of parameters linear in the number of variables (features/predictors) in a learning problem. Maximum-likelihood training can be done by evaluating a closed-form expression,[4]:718 which takes linear time, rather than by expensive iterative approximation as used for many other types of classifiers. <a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">more...</a></p>
+		</div>
+		{% endif %}
+
+			{% if algo=='RFC' %}
+		<div class="algoinfo">
+			<h4 style="text-decoration: underline;"> Random Forest Classifier</h4>
+			<p class="algoinfo">Random forests or random decision forests are an ensemble learning method for classification, regression and other tasks that operate by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean/average prediction (regression) of the individual trees. Random decision forests correct for decision trees' habit of overfitting to their training set.Random forests generally outperform decision trees, but their accuracy is lower than gradient boosted trees. However, data characteristics can affect their performance</p>
+			<p class="algoinfo">Random forests are frequently used as "blackbox" models in businesses, as they generate reasonable predictions across a wide range of data while requiring little configuration in packages such as scikit-learn. <a href="https://en.wikipedia.org/wiki/Random_forest">more...</a></p>
+		</div>
+		{% endif %}
+
+					{% if algo=='DTC' %}
+		<div class="algoinfo">
+			<h4 style="text-decoration: underline;"> Decision Tree Classifier</h4>
+			<p class="algoinfo">Decision tree learning is one of the predictive modelling approaches used in statistics, data mining and machine learning. It uses a decision tree (as a predictive model) to go from observations about an item (represented in the branches) to conclusions about the item's target value (represented in the leaves). Tree models where the target variable can take a discrete set of values are called classification trees; in these tree structures, leaves represent class labels and branches represent conjunctions of features that lead to those class labels. Decision trees where the target variable can take continuous values (typically real numbers) are called regression trees. Decision trees are among the most popular machine learning algorithms given their intelligibility and simplicity </p>
+			<p class="algoinfo">In decision analysis, a decision tree can be used to visually and explicitly represent decisions and decision making<a href="https://en.wikipedia.org/wiki/Decision_tree_learning">more...</a></p>
+		</div>
+		{% endif %}
+		{% endif %}
+	</div>
+
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

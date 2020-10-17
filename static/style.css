@@ -1,0 +1,62 @@
+body{
+	background: #8e9eab;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.navbar-brand, .nav-link{
+	color:black;
+}
+.navbar{
+	padding-top: 0;
+	margin-top: 0;
+	border:0px;
+}
+
+.container-main{
+	padding-top: 7.5%;
+	margin: 0 auto;
+	width: 50%;
+}
+.card{
+	text-align: center;
+	-webkit-box-shadow: 9px 12px 23px 12px rgba(0,0,0,0.82); 
+	box-shadow: 9px 12px 23px 12px rgba(0,0,0,0.82);
+}
+
+textarea{
+	width: 100%;
+}
+
+.select-custom, .submit-custom{
+	margin-top: 20px;
+}
+#algo{
+	width: 200px;
+	text-align: center;
+	background-color: #eef2f3;
+}
+.submit-custom option{
+	border-bottom: 1px;
+}
+.message{
+	font-weight: bold;
+	font-size: 20px;
+
+}
+.message.green{
+	color: green;
+}
+.message.danger{
+	color: red;
+}
+.algoinfo p{
+	text-align: center;
+	padding: 0px 50px;
+	text-align: justify;
+}
+.algoinfo ul{
+	text-align: center;
+	padding: 0px 50px;
+	text-align: justify;
+}
