@@ -47,6 +47,6 @@ def predict():
 	vec_mod=pickle.load(open("vec.pkl","rb"))
 	result = loaded_model.predict(vec_mod.transform(to_predict))
 	return render_template("index.html",prediction=result[0],algo=algo,textlen=l,text=text)
-
-app.run()
+if __name__="__main__":
+        app.run(debug=True)
 
