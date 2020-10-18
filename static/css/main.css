@@ -16,7 +16,7 @@ body{
 .container-main{
 	padding-top: 7.5%;
 	margin: 0 auto;
-	width: 50%;
+	/*width: 50%;*/
 }
 .card{
 	text-align: center;

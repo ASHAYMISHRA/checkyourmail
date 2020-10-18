@@ -5,10 +5,30 @@
 	<title>Check Your Mail</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<!-- <link rel="stylesheet" type="text/css" href="../static/css/main.css"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset = "UTF-8" />
 </head>
-
 <body>
+<script type="text/javascript">
+	function check(){
+		var mail=document.getElementById("mail");
+		var algo=document.getElementById("algo");
+		if(mail.value=="" || algo.value=="Choose The Algorithm"){
+			if( algo.value=="Choose The Algorithm"){
+				alert("Please select Algorithm");
+				return false;
+			}
+			if(mail.value==""){
+				alert("Please Enter the text");
+				return false;
+			}
+		}
+	}
+	
+</script>
+
+
 <nav class="navbar  navbar-expand-lg navbar-light bg-light fixed-top">
 	<div class='container'>
   <a class="navbar-brand" href="#">Mail Classifier</a>
@@ -28,15 +48,15 @@
   </div>
 </div>
 </nav>
-<div class='container container-main'>
+<div class='container container-main col-lg-6 col-xs-12 col-md-8'>
 	<div class='card'>
 		<div class="card-body">		
-			<form action='/predict' method='POST'>
+			<form class="form-grouo" action='/predict' method='POST' onsubmit="return check()">
 				<div>
-					<textarea rows="5" cols="33" name='mail',value='text' placeholder="Paste your content here" value=text required="Please paste some text"></textarea> 
+					<textarea id="mail" rows="5" cols="33" name='mail',value='text' placeholder="Paste your content here" value=text required /></textarea> 
 				</div>
 				<div class='select-custom'>
-					<select id='algo' name='algo' required="Please select one algorithm">
+					<select id='algo' name='algo' required />
 						<option value="Choose The Algorithm" disabled selected>Choose The Algorithm</option>
 						<option value='SGD'>Stochastic Gradient Descent </option>
 						<option value='LOG'>Logistic Regression</option>
